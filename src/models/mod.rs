@@ -1,8 +1,9 @@
 extern crate serde;
 
-use serde::{Deserialize, Serialize};
-
 pub mod models {
+
+    use serde::{Deserialize, Serialize};
+
     #[derive(Serialize, Deserialize)]
     pub struct EnglishDefinition {
         definitions: Vec<String>,
