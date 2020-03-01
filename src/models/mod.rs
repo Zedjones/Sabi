@@ -2,7 +2,7 @@ extern crate serde;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct EnglishDefinition {
     #[serde(rename = "english_definitions")]
     definitions: Vec<String>,
@@ -10,18 +10,24 @@ pub struct EnglishDefinition {
     tags: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct JapaneseWord {
-    word: String,
-    reading: String,
+    pub word: String,
+    pub reading: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Data {
+    pub data: Vec<Word>
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename = "data")]
 pub struct Word {
     #[serde(rename = "senses")]
-    english_definitions: Vec<EnglishDefinition>,
-    is_common: Option<bool>,
-    tags: Vec<String>,
+    pub english_definitions: Vec<EnglishDefinition>,
+    pub is_common: Option<bool>,
+    pub tags: Vec<String>,
     #[serde(rename = "japanese")]
-    japanese_words: Vec<JapaneseWord>,
+    pub japanese_words: Vec<JapaneseWord>,
 }

@@ -12,10 +12,10 @@ impl Client {
         Client { client: reqwest::Client::new() }
     }
 
-    pub async fn search_word(&self, word: String) -> Result<Word, reqwest::Error>{
+    pub async fn search_word(&self, word: String) -> Result<Vec<Word>, reqwest::Error>{
         let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
 
-        let resp: Word = self.client.get(&full_url).send().await?.json().await?;
-        Ok(resp)
+        let resp: Data = self.client.get(&full_url).send().await?.json().await?;
+        Ok(resp.data)
     }
 }

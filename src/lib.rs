@@ -2,15 +2,17 @@ mod models;
 mod client;
 
 #[cfg(test)]
+extern crate tokio;
+
 mod tests {
-    use crate::client::Client;
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
     }
-    #[test]
-    fn search_client() {
-        let client = Client::new();
-        //client.search_word(String::from("iie")).await;
+    #[tokio::test]
+    async fn search_client() {
+        let client = crate::client::Client::new();
+        let res = client.search_word(String::from("zankoku")).await;
+        println!("{:?}", res);
     }
 }
