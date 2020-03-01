@@ -1,4 +1,5 @@
 mod models;
+mod client;
 
 #[cfg(test)]
 mod tests {

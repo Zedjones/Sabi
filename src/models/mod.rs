@@ -22,7 +22,7 @@ pub mod models {
     pub struct Word {
         #[serde(rename = "senses")]
         english_definitions: Vec<EnglishDefinition>,
-        is_common: bool,
+        is_common: Option<bool>,
         tags: Vec<String>,
         #[serde(rename = "japanese")]
         japanese_words: Vec<JapaneseWord>,
