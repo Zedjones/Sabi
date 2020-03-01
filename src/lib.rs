@@ -18,7 +18,7 @@ mod tests {
     #[tokio::test]
     async fn search_client() {
         let client = crate::client::Client::new();
-        let res: Result<Vec<crate::models::Word>, reqwest::Error>;
+        let res: crate::errors::Result<Vec<crate::models::Word>>;
         res = client.search_word(String::from("no")).await;
         match res {
             Ok(words) => {

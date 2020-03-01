@@ -25,7 +25,7 @@ impl fmt::Display for SabiError {
         match self {
             SabiError::NetworkError(error) => error.fmt(f),
             SabiError::InvalidWord(word) => {
-                write!(f, "{} is not a valid word", word)
+                write!(f, "No results found for {}.", word)
             }
         }
     }
