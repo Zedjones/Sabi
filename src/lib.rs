@@ -1,8 +1,10 @@
 mod models;
 mod client;
+mod errors;
 
 pub use models::{Word, JapaneseWord, EnglishDefinition};
 pub use client::Client;
+pub use errors::{Result, SabiError};
 
 #[cfg(test)]
 extern crate tokio;
