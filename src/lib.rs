@@ -6,6 +6,7 @@ pub use client::Client;
 
 #[cfg(test)]
 extern crate tokio;
+extern crate reqwest;
 
 mod tests {
     #[test]
@@ -15,7 +16,14 @@ mod tests {
     #[tokio::test]
     async fn search_client() {
         let client = crate::client::Client::new();
-        let res = client.search_word(String::from("no")).await;
-        println!("{:?}", res);
+        let res: Result<Vec<crate::models::Word>, reqwest::Error>;
+        res = client.search_word(String::from("no")).await;
+        match res {
+            Ok(words) => {
+                println!("{:?}", words);
+                println!("{}", words.len());
+            },
+            Err(err) => println!("{}", err)
+        }
     }
 }
