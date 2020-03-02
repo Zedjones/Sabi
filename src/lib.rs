@@ -19,7 +19,7 @@ mod tests {
     async fn search_client() {
         let client = crate::client::Client::new();
         let res: crate::errors::Result<Vec<crate::models::Word>>;
-        res = client.search_english_word(String::from("one")).await;
+        res = client.search_english_word(String::from("computer")).await;
         match res {
             Ok(words) => {
                 println!("{:?}", words);
