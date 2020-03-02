@@ -2,22 +2,20 @@ mod models;
 mod client;
 mod errors;
 
-pub use models::{Word, JapaneseWord, EnglishDefinition};
+pub use models::{Word, EnglishDefinition};
 pub use client::Client;
 pub use errors::{Result, SabiError};
 
 #[cfg(test)]
-extern crate tokio;
-extern crate reqwest;
-
 mod tests {
+    use crate::client::Client;
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
     }
     #[tokio::test]
     async fn search_client() {
-        let client = crate::client::Client::new();
+        let client = Client::new();
         let res: crate::errors::Result<Vec<crate::models::Word>>;
         res = client.search_english_word(String::from("computer")).await;
         match res {

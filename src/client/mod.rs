@@ -1,6 +1,3 @@
-extern crate serde;
-extern crate reqwest;
-
 use crate::models::*;
 use crate::errors::{SabiError, Result};
 
