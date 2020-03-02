@@ -13,7 +13,7 @@ pub struct EnglishDefinition {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct JapaneseWord {
     pub word: Option<String>,
-    pub reading: String,
+    pub reading: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
