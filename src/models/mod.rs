@@ -5,9 +5,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug)]
 pub struct EnglishDefinition {
     #[serde(rename = "english_definitions")]
-    definitions: Vec<String>,
-    parts_of_speech: Vec<String>,
-    tags: Vec<String>,
+    pub definitions: Vec<String>,
+    pub parts_of_speech: Vec<String>,
+    pub tags: Vec<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
