@@ -8,9 +8,7 @@ pub use errors::{Result, SabiError};
 
 #[cfg(test)]
 mod tests {
-    use crate::Client;
-    use crate::Result;
-    use crate::Word;
+    use crate::{Client, Result, Word};
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
