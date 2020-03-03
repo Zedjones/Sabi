@@ -17,7 +17,7 @@ pub struct JapaneseWord {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub(crate) struct Data {
+pub struct Data {
     pub data: Vec<Word>
 }
 

@@ -2,7 +2,7 @@ mod models;
 mod client;
 mod errors;
 
-pub use models::{Word, EnglishDefinition};
+pub use models::Word;
 pub use client::Client;
 pub use errors::{Result, SabiError};
 
