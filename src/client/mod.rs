@@ -11,7 +11,7 @@ impl Client {
         Client { client: reqwest::Client::new() }
     }
 
-    pub async fn search_japanese_word(&self, word: String) -> Result<Vec<Word>> {
+    pub async fn search_japanese_word(&self, word: &str) -> Result<Vec<Word>> {
         cfg_if! {
             if #[cfg(test)] {
                 let full_url = mockito::server_url() + "/" + &word;
@@ -32,7 +32,7 @@ impl Client {
         Ok(data.data)
     }
 
-    pub async fn search_english_word(&self, word: String) -> Result<Vec<Word>> {
-        self.search_japanese_word(format!("\"{}\"", word)).await
+    pub async fn search_english_word(&self, word: &str) -> Result<Vec<Word>> {
+        self.search_japanese_word(&format!("\"{}\"", word)).await
     }
 }

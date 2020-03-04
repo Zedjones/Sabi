@@ -16,7 +16,7 @@ mod tests {
     #[tokio::test]
     async fn search_client() {
         let client = Client::new();
-        let res: Result<Vec<Word>> = client.search_english_word(String::from("computer")).await;
+        let res: Result<Vec<Word>> = client.search_english_word("computer").await;
         match res {
             Ok(words) => {
                 println!("{:?}", words);
