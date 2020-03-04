@@ -9,6 +9,8 @@ pub use errors::{Result, SabiError};
 #[cfg(test)]
 mod tests {
     use crate::Client;
+    use crate::errors::Result;
+
     use mockito::mock;
     fn create_200_mock(path: &str, json: &str) -> mockito::Mock {
         mock("GET", &*format!("/{}", path))
@@ -21,12 +23,15 @@ mod tests {
         assert_eq!(2 + 2, 4);
     }
     #[tokio::test]
-    async fn empty_result() {
-        let client = Client::new();
+    async fn empty_data() -> Result<()> {
         let term = "computer";
         let mock = create_200_mock(term, r#"{ "data": [] }"#);
         let _m = mock.create();
-        let res = client.search_japanese_word(term).await.unwrap();
-        assert!(res.is_empty());
+        assert!(Client::new().search_japanese_word(term).await?.is_empty());
+        Ok(())
+    }
+    #[test]
+    fn it_works_two() {
+        assert_eq!(2 + 2, 4);
     }
 }
