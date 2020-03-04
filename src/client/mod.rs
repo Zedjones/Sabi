@@ -14,13 +14,13 @@ impl Client {
     pub async fn search_japanese_word(&self, word: &str) -> Result<Vec<Word>> {
         cfg_if! {
             if #[cfg(test)] {
-                let full_url = mockito::server_url() + "/" + word;
+                let full_url = format!("{}/{}", mockito::server_url(), word);
             }
             else {
                 let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
             }
         }
-
+        println!("{}", full_url);
         let resp = match self.client.get(&full_url).send().await {
             Ok(resp) => resp,
             Err(error) => return Err(SabiError::new(error))
