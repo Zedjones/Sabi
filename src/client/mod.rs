@@ -1,5 +1,6 @@
 use crate::models::*;
 use crate::errors::{SabiError, Result};
+use cfg_if::cfg_if;
 
 pub struct Client {
     client: reqwest::Client
@@ -11,8 +12,16 @@ impl Client {
     }
 
     pub async fn search_japanese_word(&self, word: String) -> Result<Vec<Word>> {
-        let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
-        println!("{}", full_url);
+        cfg_if! {
+            if #[cfg(test)] {
+                let full_url = mockito::server_url();
+                // Avoid unused variables error
+                let _ = word;
+            }
+            else {
+                let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
+            }
+        }
 
         let resp = match self.client.get(&full_url).send().await {
             Ok(resp) => resp,
