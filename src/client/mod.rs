@@ -14,7 +14,7 @@ impl Client {
     pub async fn search_japanese_word(&self, word: &str) -> Result<Vec<Word>> {
         cfg_if! {
             if #[cfg(test)] {
-                let full_url = mockito::server_url() + "/" + &word;
+                let full_url = mockito::server_url() + "/" + word;
             }
             else {
                 let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
