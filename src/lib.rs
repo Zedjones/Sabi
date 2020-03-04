@@ -25,8 +25,7 @@ mod tests {
     #[tokio::test]
     async fn empty_data() -> Result<()> {
         let term = "computer";
-        let mock = create_200_mock(term, r#"{ "data": [] }"#);
-        let _m = mock.create();
+        let _m = create_200_mock(term, r#"{ "data": [] }"#).create();
         assert!(Client::new().search_japanese_word(term).await?.is_empty());
         Ok(())
     }
