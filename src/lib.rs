@@ -8,10 +8,10 @@ pub use errors::{Result, SabiError};
 
 #[cfg(test)]
 mod tests {
-    use crate::{Client, Result, Word};
+    use crate::Client;
     use mockito::mock;
     fn create_200_mock(path: &str, json: &str) -> mockito::Mock {
-        mock("GET", path)
+        mock("GET", &*format!("/{}", path))
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body(json)
@@ -25,14 +25,8 @@ mod tests {
         let client = Client::new();
         let term = "computer";
         let mock = create_200_mock(term, r#"{ "data": [] }"#);
-        mock.create();
-        let res: Result<Vec<Word>> = client.search_japanese_word(term).await;
-        match res {
-            Ok(words) => {
-                println!("{:?}", words);
-                println!("{}", words.len());
-            },
-            Err(err) => println!("{}", err)
-        }
+        let _m = mock.create();
+        let res = client.search_japanese_word(term).await.unwrap();
+        assert!(res.is_empty());
     }
 }

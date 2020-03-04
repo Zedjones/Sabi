@@ -20,7 +20,6 @@ impl Client {
                 let full_url = format!("https://jisho.org/api/v1/search/words?keyword={}", word);
             }
         }
-        println!("{}", full_url);
         let resp = match self.client.get(&full_url).send().await {
             Ok(resp) => resp,
             Err(error) => return Err(SabiError::new(error))
