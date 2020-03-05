@@ -7,6 +7,7 @@ pub struct EnglishDefinition {
     #[serde(rename = "english_definitions")]
     pub definitions: Vec<String>,
     pub parts_of_speech: Vec<String>,
+    pub antonyms: Vec<String>,
     pub tags: Vec<String>,
 }
 
@@ -22,7 +23,6 @@ pub struct Data {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-#[serde(rename = "data")]
 pub struct Word {
     #[serde(rename = "senses")]
     pub english_definitions: Vec<EnglishDefinition>,
