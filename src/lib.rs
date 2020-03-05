@@ -32,7 +32,9 @@ mod tests {
     async fn network_error() -> Result<()> {
         let term = "computer";
         let _m = create_fail_mock(term).create();
-        assert!(Client::new().search_japanese_word(term).await.is_err());
+        let res = Client::new().search_japanese_word(term).await;
+        assert!(res.is_err());
+        assert!(res.unwrap_err().to_string().contains("EOF while parsing a value"));
         Ok(())
     }
 }
